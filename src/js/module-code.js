@@ -38,3 +38,57 @@ export function resetTimer(timerId, refs = {}) {
 }
 
 
+export function myConverterMs(ONE_SECOND = 1, date = new Date) {
+
+    let timeToGo = Math.floor((date.getTime() - Date.now()) / ONE_SECOND);
+    const totalMin = Math.floor(timeToGo / 60);
+    const totalHr = Math.floor(totalMin / 60);
+    const totalDays = Math.floor(totalHr / 24);
+
+    ss = timeToGo - (totalMin * 60);
+    mm = totalMin - (totalHr * 60);
+    hh = totalHr - totalDays * 24;
+    dd = totalDays;
+
+    return {
+        ss,
+        mm,
+        hh,
+        dd,
+        timeToGo,
+    }
+}
+
+export function error(text, notifyId = 0) {
+
+
+    try {
+        if (document.querySelector('[data-mesage]').classList.contains('.error-block')) {
+            return
+        };
+        document.querySelector('.success-block').remove();
+    } catch (error) {
+
+    }
+    const htmlText = `<div class="error-block" data-mesage><p class= "error-message">${text}</p></div>`;
+    document.body.insertAdjacentHTML("afterbegin", htmlText);
+
+    notifyId = setTimeout(() => { document.querySelector('.error-block')?.remove() }, 3000);
+}
+
+export function success(text, notifyId = 0) {
+
+    try {
+        if (document.querySelector('[data-mesage]').classList.contains('.success-block')) {
+            return
+        };
+        document.querySelector('.error-block').remove();
+    } catch (error) {
+
+    }
+
+    const htmlText = `<div class="success-block" data-mesage><p class= "success-message">${text}</p></div>`;
+    document.body.insertAdjacentHTML("afterbegin", htmlText);
+
+    notifyId = setTimeout(() => { document.querySelector('.success-block')?.remove() }, 3000);
+}
