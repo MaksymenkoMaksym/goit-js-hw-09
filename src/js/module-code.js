@@ -45,10 +45,10 @@ export function myConverterMs(ONE_SECOND = 1, date = new Date) {
     const totalHr = Math.floor(totalMin / 60);
     const totalDays = Math.floor(totalHr / 24);
 
-    ss = timeToGo - (totalMin * 60);
-    mm = totalMin - (totalHr * 60);
-    hh = totalHr - totalDays * 24;
-    dd = totalDays;
+    let ss = timeToGo - (totalMin * 60);
+    let mm = totalMin - (totalHr * 60);
+    let hh = totalHr - totalDays * 24;
+    let dd = totalDays;
 
     return {
         ss,
